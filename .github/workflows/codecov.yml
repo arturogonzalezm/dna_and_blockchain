@@ -38,8 +38,6 @@ jobs:
       - name: Install additional dependencies
         run: |
           pip install pylint
-      - name: Code Review Scoring
-        run: find . -name '*.py' -print -exec pylint {} \;
       - name: Analysing the code with PyLint
         run: |
           pylint $(find . -name '*.py') --fail-under=8.0
