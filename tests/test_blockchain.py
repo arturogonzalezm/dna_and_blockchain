@@ -1,8 +1,15 @@
+"""
+This file contains the tests for the blockchain module.
+"""
 import time
 from backend.simple_blockchain.blockchain import Blockchain, Block
 
 
 def test_create_genesis_block():
+    """
+    Test creating the genesis block.
+    :return: None
+    """
     blockchain = Blockchain()
     genesis_block = blockchain.chain[0]
     assert genesis_block.index == 0
@@ -11,6 +18,10 @@ def test_create_genesis_block():
 
 
 def test_add_block():
+    """
+    Test adding a block to the blockchain.
+    :return: None
+    """
     blockchain = Blockchain()
     initial_chain_length = len(blockchain.chain)
     new_block = Block(1, time.time(), {"data": "New Block"}, blockchain.get_latest_block().hash)
@@ -20,6 +31,10 @@ def test_add_block():
 
 
 def test_is_chain_valid():
+    """
+    Test checking if the blockchain is valid.
+    :return: None
+    """
     blockchain = Blockchain()
     new_block = Block(1, time.time(), {"data": "New Block"}, blockchain.get_latest_block().hash)
     blockchain.add_block(new_block)

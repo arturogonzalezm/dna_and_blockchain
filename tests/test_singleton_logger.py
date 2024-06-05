@@ -1,14 +1,26 @@
+"""
+Test the SingletonLogger class and its functionality
+"""
 import logging
 from backend.logging_utils.singleton_logger import SingletonLogger
 
 
 def test_singleton_logger_instance():
+    """
+    Test that the SingletonLogger class returns a single instance of the logger.
+    :return: None
+    """
     logger1 = SingletonLogger("backend.logging_utils.singleton_logger").get_logger()
     logger2 = SingletonLogger("backend.logging_utils.singleton_logger").get_logger()
     assert logger1 is logger2
 
 
 def test_logger_functionality(caplog):
+    """
+    Test the functionality of the logger.
+    :param caplog: The caplog fixture.
+    :return: None
+    """
     logger_name = "backend.logging_utils.singleton_logger"
     logger = SingletonLogger(logger_name).get_logger()
     with caplog.at_level(logging.DEBUG):
