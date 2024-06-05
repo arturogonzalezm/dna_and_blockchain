@@ -40,9 +40,8 @@ jobs:
           pip install pylint
       - name: Code Review Scoring
         run: |
-          conda activate real_estate_broker_python
-          find . -name '*.py' -exec pylint {} \;
-        shell: bash -l {0}
+          source .venv/bin/activate
+          find . -name '*.py' -print -exec pylint {} \;
       - name: Analysing the code with PyLint
         run: |
           pylint $(find . -name '*.py') --fail-under=8.0
