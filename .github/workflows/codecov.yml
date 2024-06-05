@@ -21,8 +21,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+      - name: Create virtual environment
+        run: |
+          python -m venv .venv
       - name: Run Tests and Generate Coverage Report
         run: |
+          source .venv/bin/activate
           pip install coverage pytest-cov
           coverage run -m pytest
           coverage report
@@ -37,6 +41,7 @@ jobs:
           failCiOnError: true
       - name: Install additional dependencies
         run: |
+          source .venv/bin/activate
           pip install pylint
       - name: Code Review Scoring
         run: |
@@ -44,4 +49,5 @@ jobs:
           find . -name '*.py' -print -exec pylint {} \;
       - name: Analysing the code with PyLint
         run: |
+          source .venv/bin/activate
           pylint $(find . -name '*.py') --fail-under=8.0
